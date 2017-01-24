@@ -5,7 +5,7 @@
     <property name="checkstyle.suppressions.file" value="${basedir}/swep_suppressions.xml"/>
     <additional-data name="protect-config-file" value="false"/>
   </local-check-config>
-  <local-check-config name="maven-checkstyle-plugin check-style" location="file:/H:/normal1/wawi-db-layer/swep_checkstyle_v2.xml" type="remote" description="maven-checkstyle-plugin configuration check-style">
+  <local-check-config name="maven-checkstyle-plugin check-style" location="file:/H:/git/ilk/wawi-db-layer/swep_checkstyle_v2.xml" type="remote" description="maven-checkstyle-plugin configuration check-style">
     <property name="checkstyle.cache.file" value="${project_loc}/target/checkstyle-cachefile"/>
     <property name="checkstyle.suppressions.file" value="H:\normal1\.metadata\.plugins\org.eclipse.core.resources\.projects\wawi-db-layer\com.basistech.m2e.code.quality.checkstyleConfigurator\checkstyle-suppressions-check-style.xml"/>
     <property name="checkstyle.header.file" value="H:\normal1\.metadata\.plugins\org.eclipse.core.resources\.projects\wawi-db-layer\com.basistech.m2e.code.quality.checkstyleConfigurator\checkstyle-header-check-style.txt"/>

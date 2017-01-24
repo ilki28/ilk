@@ -7,7 +7,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,8 +23,8 @@ public class DatabaseReadInterfaceTest {
 	RealDatabase db;
 
 	private static final Set<Integer> ALLWAREHOUSES = new HashSet<Integer>(Arrays.asList(0, 1));
-	private static final Set<String> ALLPRODUCTS = new HashSet<String>(Arrays.asList(
-			"8806085948587", "0885909560462",
+	private static final Set<String> ALLPRODUCTS = new HashSet<String>(
+			Arrays.asList("8806085948587", "0885909560462",
 			"0636926062442", "8806084893826", "4250366833286", "0799637096608"));
 
 	/**

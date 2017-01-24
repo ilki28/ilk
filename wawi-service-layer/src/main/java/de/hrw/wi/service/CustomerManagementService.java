@@ -1,143 +1,99 @@
 package de.hrw.wi.service;
 
 import java.sql.SQLException;
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
 
 import de.hrw.wi.business.Customer;
-import de.hrw.wi.persistence.DatabaseReadInterface;
-import de.hrw.wi.persistence.DatabaseWriteInterface;
+import de.hrw.wi.persistence.CustomerReadInterface;
+import de.hrw.wi.persistence.CustomerWriteInterface;
 
-public class CustomerManagementService implements CustomerManagementServiceInterface{
+/** 
+ * 
+ * @author ic-132249
+ *
+ */
+public class CustomerManagementService implements CustomerManagementServiceInterface {
 
-	private DatabaseReadInterface dbRead;
-	private DatabaseWriteInterface dbWrite;
-
-	public CustomerManagementService(DatabaseReadInterface dbRead, DatabaseWriteInterface dbWrite) {
+	private CustomerReadInterface dbRead;
+	private CustomerWriteInterface dbWrite;
+	
+/**  
+ * 
+ * @param dbRead DBRead
+ * @param dbWrite DBWrite
+ */
+	public CustomerManagementService(CustomerReadInterface dbRead, CustomerWriteInterface dbWrite) {
 		this.dbRead = dbRead;
 		this.dbWrite = dbWrite;
 	}
 
-	/**
-	 * @return Gibt eine String Liste mit allen Kundendaten von der Datenbank zurück.
-	 */
+    @Override
+    public Customer getAllCustomerDataById(int id) {
+	    Customer customer = new Customer(dbRead.getCustomerFname1(id),
+		 	  dbRead.getCustomeLname(id), dbRead.getCustomerAdress(id),
+			  dbRead.getCustomerPhonenumber(id), dbRead.getCustomerDateOfBirth(id),
+			  dbRead.getCustomerMail(id));
 	
-	@Override
-	public Set<String> getAllCustomerData() {
-		return dbRead.getAllCustomer();
+	    return customer;
+    }
+
+
+
+    @Override
+    public String getCustomerPhoneById(int id) {
+	    return dbRead.getCustomerPhonenumber(id);
+    	
 	}
+
+    @Override
+    public String getCustomerMailById(int id) {
 	
-	/**
-	 * @param ID Nummer
-	 * @return Gibt Telefonnummer des jeweiligen Kunden mit der zugehörigen ID zurück.
-	 */
+    	return dbRead.getCustomerMail(id);
+    }
 
-	@Override
-	public int getPhoneNrById(int id) {
+    @Override
+    public String getCustomerAdressById(int id) {
 	
-		return dbRead.getPhoneNrOfCustomer(id);
-	}
+    	return dbRead.getCustomerAdress(id);
+    }
+
+    @Override
+    public void deleteCustomerById(int id) throws SQLException {
+    	dbWrite.deleteCustomerById(id);
 	
-	/**
-	 * @param ID Nummer
-	 * @return Gibt Mailadresse des jeweiligen Kunden mit der zugehörigen ID zurück.
-	 */
+    }
+    
+    @Override
+    public void addCustomer(int id, String fname, String lname, String adress, 
+    		String phonenumber, String dateofbirth, String email) throws SQLException {
+    	dbWrite.addCustomer(id, fname, lname, adress, phonenumber, dateofbirth, email);
+    }
 
-	@Override
-	public String getMailById(int id) {
-		return dbRead.getMailOfCustomer(id);
-	}
-	/**
-	 * @param ID Nummer
-	 * @return Gibt Adresse des jeweiligen Kunden mit der zugehörigen ID zurück.
-	 */
+    @Override
+    public void updateCustomerLname(int id, String newName) {
+	    dbWrite.updateLastNameById(id, newName);
+	
+    }
 
-	@Override
-	public String getAddressById(int id) {
-		return dbRead.getAdressOfCustomer(id);
-	}
+    @Override
+    public void updateCustomerAdress(int id, String newAdress) {
+	    dbWrite.updateAdressById(id, newAdress);
+	
+    }
+
+    @Override
+    public void updateCustomerPhone(int id, String newPhone) {
+	    dbWrite.updatePhonenumberById(id, newPhone);
+	
+    }
+
+    @Override
+    public void updateCustomerEmail(int id, String newMail) {
+        dbWrite.updateEmailById(id, newMail);
+    
+	
+    }
+	
 
 	
-	public void deleteCustomerById(int id) throws SQLException{
-		dbWrite.deleteCustomerById(id);
-	}
-	
-	public void updateIdById(int id) {
-		
-		int newId = dbRead.getAllCustomer().size()+1;
-		dbWrite.updateIdById(id, newId);
-
-	}
-
-	public void updateFirstNameById(int id) {
-		
-		String newName = "Horst";
-		dbWrite.updateFirstNameById(id, newName);
-
-	}
-
-	public void updateLastNameById(int id) {
-		
-		String newName = "Müller";
-		dbWrite.updateLastNameById(id, newName);
-
-	}
-
-	public void updateAdressById(int id) {
-		
-		String newAdress = "Lollipopstraße 25";
-		dbWrite.updateAdressById(id, newAdress);
-
-	}
-
-	public void updatePostcodeById(int id) {
-		
-		String newPostcode = "74561";
-		dbWrite.updatePostcodeById(id, newPostcode);
-
-	}
-
-	public void updateCountryById(int id) {
-		
-		String newCountry = "Beispielinien";
-		dbWrite.updateCountryById(id, newCountry);
-
-	}
-
-	public void updateCityById(int id) {
-		
-		String newCity = "Misalia";
-		dbWrite.updateCityById(id, newCity);
-
-	}
-
-	public void updateCountrycodeById(int id) {
-		
-		int newCountrycode = 0023;
-		dbWrite.updateCountrycodeById(id, newCountrycode);
-
-	}
-
-	public void updatePhonenumberById(int id) {
-		
-		int newPhone = 542118548;
-		dbWrite.updatePhonenumberById(id, newPhone);
-
-	}
-
-	public void updateDateOfBirthById(int id) {
-		
-		String newDate = "07-12-1907";
-		dbWrite.updateDateOfBirthById(id, newDate);
-
-	}
-
-	public void updateEmailById(int id) {
-		
-		String newMail = "misalname@misalia.ms";
-		dbWrite.updateEmailById(id, newMail);
-
-	}
 
 }

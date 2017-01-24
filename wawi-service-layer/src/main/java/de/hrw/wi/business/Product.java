@@ -3,8 +3,6 @@
  */
 package de.hrw.wi.business;
 
-import java.math.BigDecimal;
-
 /**
  * @author andriesc
  *

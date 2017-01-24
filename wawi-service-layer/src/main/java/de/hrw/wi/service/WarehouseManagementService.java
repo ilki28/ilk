@@ -7,11 +7,19 @@ import de.hrw.wi.business.Product;
 import de.hrw.wi.business.StorageBin;
 import de.hrw.wi.persistence.DatabaseReadInterface;
 
+/**
+ * 
+ * @author ic-132249
+ *
+ */
 public class WarehouseManagementService implements
 		WarehouseManagementServiceInterface {
 
 	private DatabaseReadInterface dbRead;
-
+/**
+ * 
+ * @param dbRead dbread
+ */
 	public WarehouseManagementService(DatabaseReadInterface dbRead) {
 		this.dbRead = dbRead;
 	}
