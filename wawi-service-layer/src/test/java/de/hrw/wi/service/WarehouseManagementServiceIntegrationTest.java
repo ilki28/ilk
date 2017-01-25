@@ -1,14 +1,16 @@
 package de.hrw.wi.service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.fail;
 
 import java.util.Set;
-import java.util.HashSet;
-import java.util.Arrays;
+
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
+
 
 import de.hrw.wi.business.Product;
 import de.hrw.wi.business.StorageBin;
@@ -34,9 +36,10 @@ public class WarehouseManagementServiceIntegrationTest {
 		assertTrue(numbers != null);
     	assertEquals(2, numbers.size());
 		for (Integer n : numbers) {
-			if (n.intValue() == 1) 
+			if (n.intValue() == 1) {
 				return;
-		}	
+			}	
+		}
 		fail("Aktives Lager mit Nummer 1 nicht gefunden!");
 	}
 
@@ -73,7 +76,8 @@ public class WarehouseManagementServiceIntegrationTest {
 	
 	@Test
 	public void testStorageBinsFor() {
-		Product product = new Product("Gigaset C430 A Duo Dect-Schnurlostelefon mit Anrufbeantworter", "4250366833286");
+		Product product = new Product(
+				"Gigaset C430 A Duo Dect-Schnurlostelefon mit Anrufbeantworter", "4250366833286");
 		Set<StorageBin> bins = wmService.storageBinsFor(product);
 		assertTrue(bins != null);
 		assertTrue(bins.size() == 1);

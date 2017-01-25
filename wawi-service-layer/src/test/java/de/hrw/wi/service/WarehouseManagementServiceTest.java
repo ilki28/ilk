@@ -1,8 +1,15 @@
 package de.hrw.wi.service;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
-import static org.mockito.AdditionalMatchers.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.times;
+import static org.mockito.Matchers.anyInt;
+
 
 import java.util.Set;
 import java.util.HashSet;
@@ -25,10 +32,11 @@ public class WarehouseManagementServiceTest {
 	@Before
 	public void setup() {
 		// Create mock object
-		 dbReadMock = Mockito.mock(DatabaseReadInterface.class);
+		dbReadMock = Mockito.mock(DatabaseReadInterface.class);
 		
 		Set<Integer> numbers = new HashSet<Integer>(Arrays.asList(123, 456));
-		Set<String> productCodes = new HashSet<String>(Arrays.asList("0799637096608", "1234567895608"));
+		Set<String> productCodes = new HashSet<String>(Arrays.asList(
+				"0799637096608", "1234567895608"));
 		
 		when(dbReadMock.getAllWarehouses()).thenReturn(numbers);
 		when(dbReadMock.getAmountForBin(123, 2)).thenReturn(10);
@@ -54,8 +62,9 @@ public class WarehouseManagementServiceTest {
 		assertTrue(numbers != null);
     	assertEquals(2, numbers.size());
 		for (Integer n : numbers) {
-			if (n.intValue() == 456) 
+			if (n.intValue() == 456) {
 				return;
+			}	
 		}	
 		fail("Aktives Lager mit Nummer 456 nicht gefunden!");
 	}
